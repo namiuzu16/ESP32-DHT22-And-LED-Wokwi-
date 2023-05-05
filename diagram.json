@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "Jowoki",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -92.63,
+      "left": 154.86,
+      "attrs": { "temperature": "51.7", "humidity": "55" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 26.53,
+      "left": 257.4,
+      "attrs": { "color": "magenta" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 99.89,
+      "left": 253.54,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "purple", [ "v0" ] ],
+    [ "esp:D15", "dht1:SDA", "red", [ "h0" ] ],
+    [ "r1:2", "esp:D2", "green", [ "h0" ] ],
+    [ "esp:GND.1", "led1:C", "black", [ "h0" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h0" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
